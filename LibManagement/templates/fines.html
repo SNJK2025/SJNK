@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fined Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
+    <style>
+        .fines-container {
+            margin-left: 240px; /* space for sidebar */
+            padding: 40px;
+            background-color: #f9f9f9;
+            min-height: 100vh;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        form {
+            margin: 0;
+        }
+
+        button {
+            padding: 6px 12px;
+            border: none;
+            background-color: #1abc9c;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: default;
+        }
+
+        .flash-message {
+            color: green;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'admin_sidebar.html' %}
+
+    <div class="fines-container">
+        <h2>💰 Fined Books Summary</h2>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for msg in messages %}
+                    <p class="flash-message">{{ msg }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <table>
+            <thead>
+                <tr>
+                    <th>User</th>
+                    <th>Book</th>
+                    <th>Issue Date</th>
+                    <th>Due Date</th>
+                    <th>Fine ($)</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for fine in fines %}
+                <tr>
+                    <td>{{ fine.username }}</td>
+                    <td>{{ fine.book }}</td>
+                    <td>{{ fine.issue_date }}</td>
+                    <td>{{ fine.due_date }}</td>
+                    <td>{{ fine.fine }}</td>
+                    <td>
+                        {% if fine.payment_status == 'Paid' %}
+                            <span style="color: green;">Paid</span>
+                        {% else %}
+                            <span style="color: red;">Pending</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if fine.payment_status == 'Pending' %}
+                        <form method="POST" action="/pay_fine">
+                            <input type="hidden" name="issue_id" value="{{ fine.issue_id }}">
+                            <button type="submit">Pay Now</button>
+                        </form>
+                        {% else %}
+                            <button disabled>Done</button>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

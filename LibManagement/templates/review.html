@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Reviews</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .review-container {
+            margin-left: 240px;
+            padding: 40px;
+            background-color: #f9f9f9;
+            min-height: 100vh;
+        }
+
+        .review-container h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .review-form {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .review-form input,
+        .review-form textarea,
+        .review-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        .review-form button {
+            padding: 12px 20px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .review-form button:hover {
+            background-color: #1abc9c;
+        }
+
+        .review-card {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid #1abc9c;
+            border-radius: 5px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .review-card strong {
+            color: #2c3e50;
+        }
+
+        .review-card small {
+            color: #888;
+        }
+
+        .rating-stars {
+            color: #f39c12;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'sidebar.html' %}
+
+    <div class="review-container">
+        <h2>Leave a Review</h2>
+        <form class="review-form" method="POST" action="/review">
+            <input type="text" name="username" placeholder="Your Email" required>
+            <input type="text" name="book" placeholder="Book Title" required>
+            <textarea name="review" placeholder="Write your review..." rows="4" required></textarea>
+            <select name="rating">
+                <option value="5">★★★★★ (5)</option>
+                <option value="4">★★★★ (4)</option>
+                <option value="3">★★★ (3)</option>
+                <option value="2">★★ (2)</option>
+                <option value="1">★ (1)</option>
+            </select>
+            <button type="submit">Submit Review</button>
+        </form>
+
+        <h2>Recent Reviews</h2>
+        {% for r in reviews %}
+        <div class="review-card">
+            <strong>{{ r[1] }} reviewed "{{ r[2] }}"</strong><br>
+            <div class="rating-stars">⭐ {{ r[4] }} / 5</div>
+            <p>"{{ r[3] }}"</p>
+            <small>Posted on: {{ r[5] }}</small>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Send Bulk Email</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
+    <style>
+        .email-container {
+            margin-left: 240px;
+            padding: 40px;
+            background-color: #f9f9f9;
+            min-height: 100vh;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 400px;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #1abc9c;
+        }
+
+        .flash-message {
+            color: green;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'admin_sidebar.html' %}
+
+    <div class="email-container">
+        <h2>📧 Send Bulk Email to Users</h2>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <p class="flash-message">{{ messages[0] }}</p>
+        {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('send_bulk_email') }}">
+            <label for="subject">Subject:</label>
+            <input type="text" name="subject" required>
+
+            <label for="message">Message:</label>
+            <textarea name="message" rows="6" required></textarea>
+
+            <label for="recipient_type">Send To:</label>
+            <select name="recipient_type">
+                <option value="all">All Users</option>
+                <option value="subscribed">Only Subscribed Users</option>
+            </select>
+
+            <br><br>
+            <button type="submit">Send Email</button>
+        </form>
+    </div>
+
+</body>
+</html>

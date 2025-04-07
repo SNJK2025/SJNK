@@ -1,0 +1,20 @@
+<!-- templates/sidebar.html -->
+<aside class="sidebar">
+    <h1>Library Management System</h1>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('homescreen', user=username) }}">🏠 Home</a></li>
+        <li><a href="{{ url_for('search', user=username) }}">🔍 Search</a></li>
+        <li><a href="{{ url_for('profile') }}?user={{ username }}">👤 Profile</a></li>
+        <li><a href="{{ url_for('review') }}?user={{ username }}">✍️ Review</a></li>
+        <li><a href="{{ url_for('suggest_book', user=username) }}">📖 Suggest Book</a></li>
+        <li><a href="{{ url_for('popular_books', user=username) }}">📚 Most Borrowed</a></li>
+        <li><a href="{{ url_for('my_books', user=username) }}">📘 My Books</a></li>
+        <li><a href="{{ url_for('recommend_books', user=username) }}">🤖 Recommended</a></li>
+        <li><a href="{{ url_for('inter_library_request') }}">🌐 Inter Library Request</a></li>
+        <li><a href="{{ url_for('admin_dashboard') }}">📊 Dashboard</a></li>
+        <li><a href="{{ url_for('home') }}">🚪 Logout</a></li>
+      </ul>
+    </nav>
+  </aside>
+  

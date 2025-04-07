@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Moderate Reviews</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
+    <style>
+        .review-moderation-container {
+            margin-left: 240px; /* For sidebar */
+            padding: 40px;
+            background-color: #f9f9f9;
+            min-height: 100vh;
+        }
+
+        .review-card {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #3498db;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+        }
+
+        .review-card strong {
+            color: #2c3e50;
+        }
+
+        .review-card small {
+            color: #888;
+        }
+
+        form button {
+            margin-top: 10px;
+            margin-right: 10px;
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        form button[name="action"][value="approve"] {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        form button[name="action"][value="delete"] {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .status {
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .status.approved {
+            color: green;
+        }
+
+        .status.pending {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'admin_sidebar.html' %}
+
+    <div class="review-moderation-container">
+        <h2>🛠️ Moderate Book Reviews</h2>
+        {% for review in reviews %}
+        <div class="review-card">
+            <strong>{{ review[1] }}</strong> on <strong>{{ review[2] }}</strong><br>
+            ⭐ {{ review[4] }} / 5<br>
+            "{{ review[3] }}"<br>
+            <small>Posted on: {{ review[5] }}</small><br>
+
+            <form method="POST">
+                <input type="hidden" name="review_id" value="{{ review[0] }}">
+                <button type="submit" name="action" value="approve">Approve</button>
+                <button type="submit" name="action" value="delete">Delete</button>
+                {% if review[6] %}
+                    <span class="status approved">[Approved]</span>
+                {% else %}
+                    <span class="status pending">[Pending]</span>
+                {% endif %}
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requested Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
+    <style>
+        .requested-books-container {
+            margin-left: 240px; /* for sidebar space */
+            padding: 40px;
+            background-color: #f9f9f9;
+            min-height: 100vh;
+        }
+
+        .requested-books-container h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background-color: #34495e;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        button.view-details {
+            background-color: #3498db;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button.view-details:hover {
+            background-color: #2980b9;
+        }
+
+        .flash-message {
+            margin-bottom: 20px;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'admin_sidebar.html' %}
+
+    <div class="requested-books-container">
+        <h2>📖 Requested Books</h2>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Book Title</th>
+                    <th>Request Date</th>
+                    <th>Validity</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in req_books %}
+                <form action="/book_issue" method="POST">
+                    <tr>
+                        <td>{{ book[1] }}</td>
+                        <td>{{ book[5] }}</td>
+                        <td>{{ book[2] }}</td>
+                        <td>15 Days</td>
+                        <input type="hidden" name="username" value="{{ book[1] }}">
+                        <input type="hidden" name="bookname" value="{{ book[5] }}">
+                        <td><button type="submit" class="view-details">Issue Book</button></td>
+                    </tr>
+                </form>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

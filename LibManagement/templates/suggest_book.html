@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Suggest a Book</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .suggest-container {
+            margin-left: 240px;
+            padding: 40px;
+            background-color: #f9f9f9;
+            min-height: 100vh;
+        }
+
+        .suggest-container h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .suggest-form {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+
+        .suggest-form input,
+        .suggest-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        .suggest-form textarea {
+            resize: vertical;
+        }
+
+        .suggest-form button {
+            padding: 12px 20px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .suggest-form button:hover {
+            background-color: #1abc9c;
+        }
+
+        .suggest-message {
+            margin-top: 15px;
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'sidebar.html' %}
+
+    <div class="suggest-container">
+        <h2>Suggest a Book</h2>
+        <form class="suggest-form" method="POST" action="/suggest_book">
+            <input type="text" name="username" placeholder="Your Name or Email" required>
+            <input type="text" name="title" placeholder="Book Title" required>
+            <input type="text" name="author" placeholder="Author Name" required>
+            <textarea name="reason" placeholder="Why should we add this book?" rows="4" required></textarea>
+            <button type="submit">Submit Suggestion</button>
+        </form>
+
+        {% if msg %}
+        <p class="suggest-message">{{ msg }}</p>
+        {% endif %}
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .main-content {
+            margin-left: 240px;
+            padding: 30px;
+        }
+
+        .profile-section {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .profile-details p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        form label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ✅ Sidebar Include -->
+    {% include 'sidebar.html' %}
+
+    <main class="main-content">
+        <section class="profile-section">
+            <h2>👤 User Profile</h2>
+            <div class="profile-details">
+                <p><strong>Name:</strong> {{ user_name }}</p>
+                <p><strong>Email:</strong> {{ username }}</p>
+            </div>
+
+            <!-- Subscription Toggle -->
+            <h3>📢 New Book Alert Subscription</h3>
+            <form method="POST" action="{{ url_for('toggle_subscription') }}">
+                <input type="hidden" name="user_id" value="{{ user_id }}">
+                <label>
+                    <input type="checkbox" name="is_subscribed" value="1" {% if is_subscribed %}checked{% endif %}>
+                    Subscribe to New Book Alerts
+                </label>
+                <br>
+                <button type="submit">Update Preference</button>
+            </form>
+
+            <h2>📚 Borrowing History</h2>
+            <div class="borrowing-history">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Borrowed Date</th>
+                            <th>Due Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in history %}
+                        <tr>
+                            <td>{{ row[0] }}</td>
+                            <td>{{ row[1].strftime('%Y-%m-%d') }}</td>
+                            <td>{{ row[2].strftime('%Y-%m-%d') }}</td>
+                            <td>{{ row[3] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

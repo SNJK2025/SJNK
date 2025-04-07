@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Library Management System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- ✅ Sidebar Include -->
+  {% include 'sidebar.html' %}
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <section class="featured-books">
+      <div><p>{{ msg }}</p></div>
+      <h2>Featured Books</h2>
+      <div class="book-grid">
+        {% for books in admin_books %}
+        <form action="/book_clicked" method="POST">
+          <div class="book-item">
+            <img src="{{ url_for('static', filename='images/' ~ books[5]) }}" alt="Book Cover" />
+            <h3>{{ books[1] }}</h3>
+            <p>{{ books[2] }}</p>
+            <input type="hidden" name="book_id" value="{{ books[1] }}">
+            <input type="hidden" name="user_id" value="{{ username }}">
+            <p><strong>Status:</strong> {{ books[6] }}</p>
+            {% if books[6] == 'Available' %}
+              <button type="submit">Issue Book</button>
+            {% else %}
+              <button disabled style="background-color: gray;">Not Available</button>
+            {% endif %}
+          </div>
+        </form>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

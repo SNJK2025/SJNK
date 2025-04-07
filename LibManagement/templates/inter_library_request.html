@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inter-Library Loan Request</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .loan-container {
+            margin-left: 240px;
+            padding: 40px;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .loan-container h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .loan-container form {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            max-width: 500px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .loan-container input,
+        .loan-container textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .loan-container button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .loan-container button:hover {
+            background-color: #0056b3;
+        }
+
+        .flash-msg {
+            color: green;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'sidebar.html' %}
+
+    <div class="loan-container">
+        <h2>📦 Request Inter-Library Loan</h2>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <p class="flash-msg">{{ messages[0] }}</p>
+        {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('inter_library_request') }}">
+            <input type="text" name="username" placeholder="Your Name" required>
+            <input type="text" name="book_title" placeholder="Book Title" required>
+            <input type="text" name="author" placeholder="Author Name">
+            <textarea name="reason" placeholder="Why do you need this book?" required></textarea>
+            <button type="submit">Submit Request</button>
+        </form>
+    </div>
+
+</body>
+</html>

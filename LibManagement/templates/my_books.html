@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Borrowed Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .borrowed-container {
+            margin-left: 240px;
+            padding: 40px;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .borrowed-container h2 {
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        td button {
+            padding: 6px 12px;
+            margin-right: 5px;
+            background-color: #3498db;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        td button:hover {
+            background-color: #2980b9;
+        }
+
+        .flash-msg {
+            color: green;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'sidebar.html' %}
+
+    <div class="borrowed-container">
+        <h2>📘 Borrowed Books for {{ user }}</h2>
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <p class="flash-msg">{{ messages[0] }}</p>
+        {% endif %}
+        {% endwith %}
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Issue Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for b in books %}
+                <tr>
+                    <td>{{ b[0] }}</td>
+                    <td>{{ b[1] }}</td>
+                    <td>{% if b[2] == 0 %} Borrowed {% else %} Returned {% endif %}</td>
+                    <td>
+                        {% if b[2] == 0 %}
+                            <form method="POST" action="/return_book" style="display:inline;">
+                                <input type="hidden" name="book" value="{{ b[0] }}">
+                                <input type="hidden" name="user" value="{{ user }}">
+                                <button type="submit">Return</button>
+                            </form>
+                            <form method="POST" action="/renew_book" style="display:inline;">
+                                <input type="hidden" name="book" value="{{ b[0] }}">
+                                <input type="hidden" name="user" value="{{ user }}">
+                                <button type="submit">Renew</button>
+                            </form>
+                        {% else %}
+                            N/A
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

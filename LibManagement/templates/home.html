@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Sign Up</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 400px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        button {
+            padding: 12px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            margin-top: 15px;
+            color: #666;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        function showForm(formType) {
+            document.getElementById('loginForm').classList.toggle('hidden', formType !== 'login');
+            document.getElementById('registerForm').classList.toggle('hidden', formType !== 'signup');
+            document.getElementById('formTitle').innerText = formType === 'login' ? 'Login' : 'Sign Up';
+            document.getElementById('toggleText').classList.toggle('hidden', formType !== 'login');
+            document.getElementById('toggleTextSignup').classList.toggle('hidden', formType !== 'signup');
+        }
+    </script>
+</head>
+<body>
+    <div class="auth-container">
+        <h2 id="formTitle">Login</h2>
+        <div><p>{{msg}}</p></div>
+        <!-- Login Form -->
+        <form id="loginForm" method="post" action="/login">
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="pwd" placeholder="Password" required>
+            <button type="submit">Login</button>
+        </form>
+        
+        <!-- Sign Up Form -->
+        <form id="registerForm" method="post" class="hidden">
+            <input type="text" placeholder="Full Name" name="uname" required>
+            <input type="email" placeholder="Email" name="email" required>
+            <input type="password" placeholder="Password" name="pwd" required>
+            <input type="password" placeholder="Confirm Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        
+        <p id="toggleText">Don't have an account? <a href="#" onclick="showForm('signup')">Sign up</a></p>
+        <p id="toggleTextSignup" class="hidden">Already have an account? <a href="#" onclick="showForm('login')">Login</a></p>
+        <p><a href="{{ url_for('reset_password') }}">Forgot Password?</a></p>
+    </div>
+</body>
+</html>
+
+
+
+
+ 

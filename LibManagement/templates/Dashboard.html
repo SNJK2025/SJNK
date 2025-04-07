@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+
+        .dashboard-container {
+            margin-left: 240px;
+            padding: 40px;
+            min-height: 100vh;
+        }
+
+        .dashboard-container h1 {
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+
+        .dashboard-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            width: 220px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .stat-card h3 {
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+
+        .stat-card span {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'sidebar.html' %}
+
+    <div class="dashboard-container">
+        <h1>📊 Admin Dashboard</h1>
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <h3>Total Users</h3>
+                <span>{{ total_users }}</span>
+            </div>
+
+            <div class="stat-card">
+                <h3>Active Users</h3>
+                <span>{{ active_users }}</span>
+            </div>
+
+            <div class="stat-card">
+                <h3>Total Books</h3>
+                <span>{{ total_books }}</span>
+            </div>
+
+            <div class="stat-card">
+                <h3>Borrowed Books</h3>
+                <span>{{ borrowed_books }}</span>
+            </div>
+
+            <div class="stat-card">
+                <h3>Overdue Books</h3>
+                <span>{{ overdue_books }}</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

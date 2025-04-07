@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="auth-container">
+        <h2>Edit Profile</h2>
+        <form method="POST" action="/edit_profile">
+            <input type="hidden" name="old_email" value="{{ user_email }}">
+            <input type="text" name="uname" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="New Email" required>
+            <input type="password" name="pwd" placeholder="New Password" required>
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Most Borrowed Books</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
+    <style>
+        .popular-container {
+            margin-left: 240px;
+            padding: 40px;
+            background-color: #f4f4f4;
+            min-height: 100vh;
+        }
+
+        .popular-container h2 {
+            margin-bottom: 25px;
+            color: #2c3e50;
+        }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .book-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .book-item img {
+            height: 140px;
+            width: 100px;
+            object-fit: cover;
+            margin-bottom: 12px;
+        }
+
+        .book-item h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .book-item p {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'admin_sidebar.html' %}
+
+    <div class="popular-container">
+        <h2>📚 Top 5 Most Borrowed Books</h2>
+        <div class="book-grid">
+            {% for book in popular %}
+            <div class="book-item">
+                <img src="{{ url_for('static', filename='images/' ~ book[1]) }}" alt="Cover">
+                <h3>{{ book[0] }}</h3>
+                <p>Times Borrowed: {{ book[2] }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>

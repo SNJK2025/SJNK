@@ -1,0 +1,22 @@
+<aside class="sidebar">
+    <h1>Admin Panel</h1>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('adminscreen') }}">🏠 Admin Home</a></li>
+            <li><a href="{{ url_for('requested_books') }}">📋 Book Requests</a></li>
+            <li><a href="{{ url_for('moderate_reviews') }}">📝 Moderate Reviews</a></li>
+            <li><a href="{{ url_for('popular_books') }}">📚 Most Borrowed</a></li>
+            <li><a href="{{ url_for('calculate_fines') }}">💰 Fines</a></li>
+            <li><a href="{{ url_for('manage_users') }}">👥 Manage Users</a></li>
+            <li><a href="{{ url_for('manage_categories') }}">🏷️ Categories</a></li>
+            <li><a href="{{ url_for('system_settings') }}">⚙️ Settings</a></li>
+            <li><a href="{{ url_for('send_bulk_email') }}">📢 Announcements</a></li>
+            <li><a href="{{ url_for('generate_report') }}">📈 Reports</a></li>
+            <li><a href="{{ url_for('view_audit_logs') }}">🛡️ Audit Logs</a></li>
+            <li><a href="{{ url_for('manage_staff') }}">🧑‍💼 Staff</a></li>
+            <li><a href="{{ url_for('view_ill_requests') }}">🌐 ILL Requests</a></li>
+            <li><a href="{{ url_for('overdue_books') }}">⏰ Overdue Books</a></li>
+            <li><a href="{{ url_for('home') }}">🚪 Logout</a></li>
+        </ul>
+    </nav>
+</aside>

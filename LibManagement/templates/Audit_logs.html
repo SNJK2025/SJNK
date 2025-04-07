@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Audit Logs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style1.css') }}">
+    <style>
+        .audit-container {
+            margin-left: 240px;  /* leave space for sidebar */
+            padding: 40px;
+            background: #f9f9f9;
+            min-height: 100vh;
+        }
+
+        .audit-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .audit-container ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .audit-container li {
+            background: white;
+            padding: 12px;
+            border-left: 4px solid #007bff;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    {% include 'admin_sidebar.html' %}
+
+    <div class="audit-container">
+        <h2>📜 Admin Audit Logs</h2>
+
+        <ul>
+            {% for log in logs %}
+                <li>{{ log }}</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{{ url_for('login') }}" class="back-link">← Back to Admin Panel</a>
+    </div>
+
+</body>
+</html>

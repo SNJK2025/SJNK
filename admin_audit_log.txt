@@ -1,0 +1,40 @@
+[2025-04-06 18:07:44] admin@example.com: Uploaded new book: Bible by Jesus (Genre: Religious, ISBN: 1234)
+[2025-04-06 22:43:31] admin@example.com: Deleted book ID: 13
+[2025-04-06 22:51:54] admin@example.com: Uploaded new book: Great Expectaions by  Charles Dickens (Genre: Novel, ISBN: 9784561230)
+[2025-04-06 22:57:03] admin@example.com: Uploaded new book: The Picture of Dorian Gray by Oscar Wilde (Genre: Philosophical fiction., ISBN: 4567891203)
+[2025-04-06 23:01:01] admin@example.com: Uploaded new book: The Alchemist by Paulo Cocelho (Genre: Adventure Novel, ISBN: 5678941230)
+[2025-04-06 23:02:55] admin@example.com: Uploaded new book: Half Girlfriend by Chetan Bhagat (Genre: Romantic Novel, ISBN: 3654129087)
+[2025-04-06 23:11:47] admin@example.com: Deleted book ID: 9
+[2025-04-06 23:11:54] admin@example.com: Deleted book ID: 11
+[2025-04-06 23:13:09] admin@example.com: Uploaded new book: Chanakya Niti by Chanakya (Genre: Politics, ISBN: 3012456897)
+[2025-04-06 23:16:26] admin@example.com: Uploaded new book: Chanakya Niti by Chanakya (Genre: Politics, ISBN: 3012456897)
+[2025-04-06 23:19:46] admin@example.com: Added category: Novel
+[2025-04-06 23:19:54] admin@example.com: Added category: Physics
+[2025-04-06 23:20:03] admin@example.com: Added category: Religious
+[2025-04-06 23:20:12] admin@example.com: Added category: Motivation
+[2025-04-06 23:21:59] admin@example.com: Updated system settings: borrow_limit=2, book_validity_days=1, fine_per_day=2
+[2025-04-06 23:23:51] admin@example.com: Uploaded new book: Concept Of Physics by H.C Verma (Genre: Physics, ISBN: 4567891230)
+[2025-04-06 23:27:41] admin@example.com: Deleted book ID: 19
+[2025-04-07 11:18:55] admin@example.com: Uploaded new book: 2 States by Chetan Bhagat (Genre: Romance, ISBN: 45678912)
+[2025-04-07 16:17:03] admin@example.com: Updated system settings: borrow_limit=5, book_validity_days=2, fine_per_day=2
+[2025-04-07 18:34:49] admin@example.com: Uploaded new book: Python by James (Genre: Programming, ISBN: 709)
+[2025-04-07 18:34:50] admin@example.com: Uploaded new book: Python by James (Genre: Programming, ISBN: 709)
+[2025-04-07 18:35:02] admin@example.com: Uploaded new book: Python by James (Genre: Programming, ISBN: 709)
+[2025-04-07 18:35:28] admin@example.com: Uploaded new book: Python by James (Genre: Programming, ISBN: 709)
+[2025-04-07 18:35:34] admin@example.com: Uploaded new book: Python by James (Genre: Programming, ISBN: 709)
+[2025-04-07 18:35:35] admin@example.com: Uploaded new book: Python by James (Genre: Programming, ISBN: 709)
+[2025-04-07 18:36:33] admin@example.com: Uploaded new book: Python by James (Genre: Programming, ISBN: 709)
+[2025-04-07 18:36:33] admin@example.com: Uploaded new book: Python by James (Genre: Programming, ISBN: 709)
+[2025-04-07 18:36:50] admin@example.com: Deleted book ID: 22
+[2025-04-07 18:36:57] admin@example.com: Deleted book ID: 29
+[2025-04-07 18:37:01] admin@example.com: Deleted book ID: 28
+[2025-04-07 18:37:05] admin@example.com: Deleted book ID: 24
+[2025-04-07 18:37:08] admin@example.com: Deleted book ID: 27
+[2025-04-07 18:37:12] admin@example.com: Deleted book ID: 23
+[2025-04-07 18:37:15] admin@example.com: Deleted book ID: 25
+[2025-04-07 18:37:19] admin@example.com: Deleted book ID: 26
+[2025-04-07 18:37:57] admin@example.com: Uploaded new book: Python by James (Genre: Programming, ISBN: 232)
+[2025-04-07 18:44:09] admin@example.com: Uploaded new book: Java by Neel (Genre: Programming, ISBN: 888)
+[2025-04-07 18:46:07] admin@example.com: Uploaded new book: Kejriwal Sarkar by Bhupesh (Genre: Freebies, ISBN: 123456799)
+[2025-04-07 18:47:25] admin@example.com: Deleted book ID: 12
+[2025-04-07 18:55:52] admin@example.com: Updated system settings: borrow_limit=50, book_validity_days=2, fine_per_day=2

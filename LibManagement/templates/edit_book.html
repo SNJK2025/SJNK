@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Book</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Edit Book: {{ book[1] }}</h2>
+        <form method="POST" action="/update_book" enctype="multipart/form-data">
+            <input type="hidden" name="book_id" value="{{ book[0] }}">
+            <label>Title:</label>
+            <input type="text" name="title" value="{{ book[1] }}" required><br>
+            <label>Author:</label>
+            <input type="text" name="author" value="{{ book[2] }}" required><br>
+            <label>Genre:</label>
+            <input type="text" name="genre" value="{{ book[3] }}" required><br>
+            <label>ISBN:</label>
+            <input type="text" name="isbn" value="{{ book[4] }}" required><br>
+            <label>Current Cover:</label>
+            <p>{{ book[5] }}</p>
+            <label>Change Cover Image:</label>
+            <input type="file" name="cover_image"><br><br>
+            <button type="submit">Update Book</button>
+        </form>
+    </div>
+</body>
+</html>
